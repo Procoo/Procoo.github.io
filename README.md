@@ -11,7 +11,7 @@
         <div class="content">
             <h1>Bem-vindo ao Meu Portfólio</h1>
             <p>Confira alguns dos meus trabalhos abaixo:</p>
-            <img src="imagem.jpg" alt="Imagem do Portfólio" class="portfolio-image">
+            <img src="porco-peludo-com-focinho-rosa-e-cabelo-crespo_493961-833.avif" alt="Imagem do Portfólio" class="portfolio-image">
             <a href="#" class="btn">Ver Mais</a>
         </div>
     </div>
