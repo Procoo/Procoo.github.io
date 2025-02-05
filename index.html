@@ -3,32 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site do Porco</title>
+    <title>Nossa ofensiva de namoro</title> <!-- Título da página alterado -->
     <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f3f4, #f0d9e7);
+            color: #5a3a4e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .gif-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             text-align: center;
-            padding: 50px;
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px; /* Espaço entre os GIFs e o contador */
         }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #555;
-        }
-        img {
+
+        .gif-container img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ff6b81;
+            font-weight: 600;
+        }
+
+        .contador {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .contador p {
+            margin: 10px 0;
+        }
+
+        #contadorAnosMesesDias, #contadorDias {
+            font-weight: bold;
+            color: #5a3a4e;
+        }
+
+        #contadorDias {
+            display: none; /* Inicialmente escondido */
+        }
+
+        button {
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff4757;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
             margin-top: 20px;
+            font-size: 0.9em;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <h1>Este site é do Porco!</h1>
-    <p>Bem-vindo ao site mais suíno da internet.</p>
-    <img src="porco.jpg" alt="Imagem de um porco">
+    <!-- Exibição de GIFs -->
+    <div class="gif-container">
+        <img id="gif" src="" alt="Gif de aniversário">
+    </div>
+
+    <!-- Contador de Tempo -->
+    <div class="container">
+        <h1>Tempo que somos momos</h1> <!-- Título do contador alterado -->
+        <div class="contador">
+            <p></p> <!-- Texto removido -->
+            <p id="contadorAnosMesesDias"></p>
+            <p id="contadorDias" class="hidden"></p>
+        </div>
+        <button onclick="alternarExibicao()">Alterar</button>
+        <div class="footer">
+            <!-- Rodapé removido -->
+        </div>
+    </div>
+
+    <script>
+        // Contador de Tempo
+        const inicioNamoro = new Date(2024, 0, 9); // Data inicial do namoro (9 de janeiro de 2024)
+
+        function calcularDiferenca() {
+            const agora = new Date();
+            const diferenca = agora - inicioNamoro; // Diferença em milissegundos
+
+            // Convertendo a diferença para dias
+            const diasTotais = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+
+            // Calculando anos, meses e dias restantes
+            let anos = Math.floor(diasTotais / 365);
+            let meses = Math.floor((diasTotais % 365) / 30);
+            let dias = (diasTotais % 365) % 30;
+
+            return { anos, meses, dias, diasTotais };
+        }
+
+        function atualizarContador() {
+            const { anos, meses, dias, diasTotais } = calcularDiferenca();
+
+            // Atualiza o contador de anos, meses e dias
+            document.getElementById('contadorAnosMesesDias').innerText = 
+                `${anos} anos, ${meses} meses e ${dias} dias`;
+
+            // Atualiza o contador de dias
+            document.getElementById('contadorDias').innerText = 
+                `Total em dias: ${diasTotais} dias`;
+        }
+
+        function alternarExibicao() {
+            const contadorAnosMesesDias = document.getElementById('contadorAnosMesesDias');
+            const contadorDias = document.getElementById('contadorDias');
+
+            // Alterna a visibilidade
+            if (contadorAnosMesesDias.style.display === "none") {
+                contadorAnosMesesDias.style.display = "block";
+                contadorDias.style.display = "none";
+            } else {
+                contadorAnosMesesDias.style.display = "none";
+                contadorDias.style.display = "block";
+            }
+        }
+
+        // Atualiza o contador ao carregar a página
+        atualizarContador();
+
+        // Agenda a atualização diária
+        function agendarAtualizacao() {
+            const agora = new Date();
+            const proximaAtualizacao = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + 1, 0, 0, 0);
+            const tempoAteMeiaNoite = proximaAtualizacao - agora;
+
+            setTimeout(() => {
+                atualizarContador(); // Atualiza o contador
+                agendarAtualizacao(); // Agenda a próxima atualização
+            }, tempoAteMeiaNoite);
+        }
+
+        // Inicia o agendamento da atualização diária
+        agendarAtualizacao();
+
+        // Exibição de GIFs
+        const gifs = [
+            "gif_1.gif",
+            "gif_2.gif",
+            "gif_3.gif",
+            "gif_4.gif"
+        ];
+
+        const gifAleatorio = gifs[Math.floor(Math.random() * gifs.length)];
+        document.getElementById('gif').src = gifAleatorio;
+    </script>
 </body>
 </html>
