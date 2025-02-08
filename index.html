@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa ofensiva de namoro</title> <!-- Título da página alterado -->
+    <title>Nossa ofensiva de namoro</title>
     <style>
         /* Reset básico */
         * {
@@ -32,7 +32,7 @@
             text-align: center;
             max-width: 400px;
             width: 100%;
-            margin-bottom: 20px; /* Espaço entre os GIFs e o contador */
+            margin-bottom: 20px;
         }
 
         .gif-container img {
@@ -73,7 +73,7 @@
         }
 
         #contadorDias {
-            display: none; /* Inicialmente escondido */
+            display: none;
         }
 
         button {
@@ -110,9 +110,9 @@
 
     <!-- Contador de Tempo -->
     <div class="container">
-        <h1>Tempo que somos momos</h1> <!-- Título do contador alterado -->
+        <h1>Tempo que somos momos</h1>
         <div class="contador">
-            <p></p> <!-- Texto removido -->
+            <p></p>
             <p id="contadorAnosMesesDias"></p>
             <p id="contadorDias" class="hidden"></p>
         </div>
@@ -124,7 +124,7 @@
 
     <script>
         // Contador de Tempo
-        const inicioNamoro = new Date(2024, 0, 9); // Data inicial do namoro (9 de janeiro de 2024)
+        const inicioNamoro = new Date(2024, 0, 11); // Data inicial do namoro (9 de janeiro de 2024)
 
         function calcularDiferenca() {
             const agora = new Date();
@@ -187,10 +187,10 @@
 
         // Exibição de GIFs
         const gifs = [
-            "gif_1.gif",
-            "gif_2.gif",
-            "gif_3.gif",
-            "gif_4.gif"
+            'gif_1.gif',
+            'gif_2.gif',
+            'gif_3.gif',
+            'gif_4.gif'
         ];
 
         const gifAleatorio = gifs[Math.floor(Math.random() * gifs.length)];
